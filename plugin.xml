@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<zend-config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <plugin>
+        <pluginName>CoreShopExamples</pluginName>
+        <pluginDescription><![CDATA[]]></pluginDescription>
+        <pluginVersion>1.0</pluginVersion>
+        <pluginRevision>1</pluginRevision>
+        <pluginBuildTimestamp>0</pluginBuildTimestamp>
+        <pluginClassName>\CoreShopExamples\Plugin</pluginClassName>
+        <pluginIncludePaths>
+            <path>/CoreShopExamples/lib</path>
+        </pluginIncludePaths>
+        <pluginNamespaces>
+            <namespace>CoreShopExamples</namespace>
+            <namespace>CoreShop</namespace>
+        </pluginNamespaces>
+        <pluginJsPaths>
+            <path>/plugins/CoreShopExamples/static/js/coreshop/pricerule/actions/apiPrice.js</path>
+        </pluginJsPaths>
+        <pluginCssPaths>
+
+        </pluginCssPaths>
+    </plugin>
+</zend-config>
