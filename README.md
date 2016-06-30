@@ -29,6 +29,28 @@ public function init()
 
 ```
 
+Your Action needs to implement CoreShop\Model\PriceRule\Action\AbstractAction
+
+```
+namespace CoreShop\Model\PriceRule\Action;
+
+class YourCustomPriceRuleAction extends AbstractAction
+{
+    public $type = 'yourCustomPriceRuleAction';
+
+    public function applyRule(Cart $cart);
+
+    public function unApplyRule(Cart $cart)M
+
+    public function getDiscountCart(Cart $cart);
+
+    public function getDiscountProduct($basePrice, Product $product);
+
+    public function getPrice(Product $product);
+}
+
+```
+
 ## Condition
 
 ```
@@ -46,6 +68,22 @@ public function init()
     CoreShop\Model\Product\PriceRule::addCondition("yourCustomPriceRuleCondition"); //For Product Price Rules
     CoreShop\Model\Product\SpecificPrice::addCondition("yourCustomPriceRuleCondition"); //For Specific Price Rules
     CoreShop\Model\Cart\PriceRule::addCondition("yourCustomPriceRuleCondition"); //For Cart Price Rules
+}
+
+```
+
+Your Condition needs to implement
+
+```
+namespace CoreShop\Model\PriceRule\Condition;
+
+class YourCustomPriceRuleCondition extends AbstractCondition
+{
+    public $type = 'yourCustomPriceRuleCondition';
+
+    public function checkConditionCart(Cart $cart, PriceRule $priceRule, $throwException = false);
+
+    public function checkConditionProduct(Model\Product $product, Model\Product\AbstractProductPriceRule $priceRule);
 }
 
 ```
