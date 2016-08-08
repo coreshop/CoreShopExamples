@@ -119,7 +119,7 @@ public function init()
 
 Your Action needs to implement CoreShop\Model\Carrier\ShippingRule\Action\AbstractAction
 
-```
+```php
 namespace CoreShop\Model\Carrier\ShippingRule\Action\AbstractAction;
 
 class YourCustomShippingRuleAction extends AbstractAction
