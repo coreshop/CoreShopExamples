@@ -6,8 +6,6 @@ This Repo contains some examples on how to override CoreShop Default behaviour
 # Custom Price Rules
 Sometimes you will need some custom price rules for your customers. Its quite simple to implement them.
 
-You will need following files
-
 ## Action
 
 ```
@@ -17,7 +15,7 @@ YourPlugin/static/js/coreshop/pricerule/actions/yourCustomPriceRuleAction.js
 
 you will need to tell CoreShop that there is a new price rule action
 
-```
+```php
 public function init()
 {
     parent::init();
@@ -31,7 +29,7 @@ public function init()
 
 Your Action needs to implement CoreShop\Model\PriceRule\Action\AbstractAction
 
-```
+```php
 namespace CoreShop\Model\PriceRule\Action;
 
 class YourCustomPriceRuleAction extends AbstractAction
@@ -40,7 +38,7 @@ class YourCustomPriceRuleAction extends AbstractAction
 
     public function applyRule(Cart $cart);
 
-    public function unApplyRule(Cart $cart)M
+    public function unApplyRule(Cart $cart);
 
     public function getDiscountCart(Cart $cart);
 
@@ -60,7 +58,7 @@ YourPlugin/static/js/coreshop/pricerule/conditions/yourCustomPriceRuleCondition.
 
 you will need to tell CoreShop that there is a new price rule action
 
-```
+```php
 public function init()
 {
     parent::init();
@@ -74,7 +72,7 @@ public function init()
 
 Your Condition needs to implement
 
-```
+```php
 namespace CoreShop\Model\PriceRule\Condition;
 
 class YourCustomPriceRuleCondition extends AbstractCondition
@@ -88,10 +86,82 @@ class YourCustomPriceRuleCondition extends AbstractCondition
 
 ```
 
-## Example - Action
+### Example - Action
 
 within this repo, you will find an example on howto use Price-Rules to gather prices from an api.
 
  - JS: [https://github.com/coreshop/CoreShopExamples/blob/master/static/js/coreshop/pricerule/actions/apiPrice.js](https://github.com/coreshop/CoreShopExamples/blob/master/static/js/coreshop/pricerule/actions/apiPrice.js)
  - PHP: [https://github.com/coreshop/CoreShopExamples/blob/master/lib/CoreShop/Model/PriceRule/Action/ApiPrice.php](https://github.com/coreshop/CoreShopExamples/blob/master/lib/CoreShop/Model/PriceRule/Action/ApiPrice.php)
  - Example Price Controller: [https://github.com/coreshop/CoreShopExamples/blob/master/controllers/PriceController.php](https://github.com/coreshop/CoreShopExamples/blob/master/controllers/PriceController.php)
+
+# Custom Shipping Rule
+Shipping is a very difficult topic. To probably rule them all, CoreShop uses Shipping Rules. In this example, I will show you how to create custom conditions/actions.
+
+
+## Action
+
+```
+YourPlugin/lib/CoreShop/Model/Carrier/ShippingRule/Action/YourCustomShippingRuleAction.php
+YourPlugin/static/js/coreshop/carrier/shippingRule/actions/yourCustomShippingRuleAction.js
+```
+
+you will need to tell CoreShop that there is a new shipping rule action
+
+```php
+public function init()
+{
+ parent::init();
+
+ CoreShop\Model\Carrier\ShippingRule::addAction("YourCustomShippingRuleAction");
+}
+
+```
+
+Your Action needs to implement CoreShop\Model\Carrier\ShippingRule\Action\AbstractAction
+
+```
+namespace CoreShop\Model\Carrier\ShippingRule\Action\AbstractAction;
+
+class YourCustomShippingRuleAction extends AbstractAction
+{
+ public $type = 'yourCustomShippingRuleAction';
+
+  public function getPriceModification(Cart $cart, Model\User\Address $address, $price); //Use this to modify the price
+
+  public function getPrice(Cart $cart, Model\User\Address $address); //use this to get the price
+}
+
+```
+
+## Condition
+
+```
+YourPlugin/lib/CoreShop/Carrier/ShippingRule/Condition/YourCustomShippingRuleCondition.php
+YourPlugin/static/js/coreshop/carrier/shippingrule/conditions/yourCustomShippingRuleCondition.js
+```
+
+you will need to tell CoreShop that there is a new shipping rule condition
+
+```php
+public function init()
+{
+ parent::init();
+
+ CoreShop\Model\Carrier\ShippingRule::addCondition("yourCustomShippingRuleCondition");
+}
+
+```
+
+Your Condition needs to implement
+
+```php
+namespace CoreShop\Model\Carrier\ShippingRule\Condition;
+
+class YourCustomShippingRuleCondition extends AbstractCondition
+{
+ public $type = 'yourCustomShippingRuleCondition';
+
+ public function checkCondition(Model\Cart $cart, Model\User\Address $address, ShippingRule $shippingRule);
+}
+
+```
