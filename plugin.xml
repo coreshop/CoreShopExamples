@@ -16,6 +16,8 @@
         </pluginNamespaces>
         <pluginJsPaths>
             <path>/plugins/CoreShopExamples/static/js/coreshop/pricerule/actions/apiPrice.js</path>
+            <path>/plugins/CoreShopExamples/static/js/coreshop/carrier/shippingrule/actions/anyPrice.js</path>
+            <path>/plugins/CoreShopExamples/static/js/coreshop/carrier/shippingrule/conditions/random.js</path>
         </pluginJsPaths>
         <pluginCssPaths>
 

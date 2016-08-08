@@ -14,6 +14,7 @@
 
 namespace CoreShopExamples;
 
+use CoreShop\Model\Carrier\ShippingRule;
 use CoreShop\Model\Product\PriceRule;
 use Pimcore\API\Plugin as PluginLib;
 
@@ -28,6 +29,9 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
         parent::init();
 
         PriceRule::addAction("apiPrice");
+
+        ShippingRule::addAction("anyPrice");
+        ShippingRule::addCondition("random");
     }
 
     public static function install()
