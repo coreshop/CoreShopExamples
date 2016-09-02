@@ -15,10 +15,7 @@
 namespace CoreShop\Model\PriceRule\Action;
 
 use CoreShop\Model\Cart;
-use CoreShop\Model\Currency;
 use CoreShop\Model\Product;
-use CoreShop\Model\User;
-use CoreShop\Tool;
 use Pimcore\Cache;
 
 /**
