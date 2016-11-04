@@ -40,7 +40,7 @@ class YourCustomPriceRuleAction extends AbstractAction
 
     public function unApplyRule(Cart $cart);
 
-    public function getDiscountCart(Cart $cart);
+    public function getDiscountCart(Cart $cart, $withTax = true);
 
     public function getDiscountProduct($basePrice, Product $product);
 
