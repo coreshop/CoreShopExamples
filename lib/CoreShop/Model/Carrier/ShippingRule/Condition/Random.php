@@ -15,7 +15,7 @@
 namespace CoreShop\Model\Carrier\ShippingRule\Condition;
 
 use CoreShop\Model;
-use CoreShop\Model\Carrier\ShippingRule;
+use CoreShop\Model\Carrier\ShippingRule as CarrierShippingRule;
 
 /**
  * Class Random
@@ -26,18 +26,18 @@ class Random extends AbstractCondition
     /**
      * @var string
      */
-    public $type = 'random';
+    public static $type = 'random';
 
     /**
      * Check if Cart is Valid for Condition.
      *
      * @param Model\Cart $cart
      * @param Model\User\Address $address;
-     * @param ShippingRule $shippingRule
+     * @param CarrierShippingRule $shippingRule
      *
      * @return mixed
      */
-    public function checkCondition(Model\Cart $cart, Model\User\Address $address, ShippingRule $shippingRule) {
+    public function checkCondition(\CoreShop\Model\Carrier $carrier, \CoreShop\Model\Cart $cart, \CoreShop\Model\User\Address $address, CarrierShippingRule $shippingRule) {
         return (bool)random_int(0, 1);
     }
 }

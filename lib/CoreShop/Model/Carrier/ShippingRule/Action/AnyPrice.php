@@ -26,7 +26,7 @@ class AnyPrice extends AbstractAction
     /**
      * @var string
      */
-    public $type = 'anyPrice';
+    public static $type = 'anyPrice';
 
     /**
      * get price for shipping
@@ -36,7 +36,7 @@ class AnyPrice extends AbstractAction
      *
      * @return float|boolean $price
      */
-    public function getPrice(Cart $cart, Model\User\Address $address)
+    public function getPrice(\CoreShop\Model\Carrier $carrier, \CoreShop\Model\Cart $cart, \CoreShop\Model\User\Address $address)
     {
         return 100;
     }

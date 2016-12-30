@@ -27,7 +27,7 @@ class ApiPrice extends AbstractAction
     /**
      * @var string
      */
-    public $type = 'apiPrice';
+    public static $type = 'apiPrice';
 
     /**
      * @var double|boolean
