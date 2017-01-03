@@ -12,16 +12,16 @@
  * @license    https://www.coreshop.org/license     GNU General Public License version 3 (GPLv3)
  */
 
-namespace CoreShop\Model\Carrier\ShippingRule\Action;
+namespace CoreShopExamples\Model\Carrier\ShippingRule\Action;
 
 use CoreShop\Model\Cart;
 use CoreShop\Model;
 
 /**
  * Class AnyPrice
- * @package CoreShop\Model\Carrier\ShippingRule\Action
+ * @package CoreShopExamples\Model\Carrier\ShippingRule\Action
  */
-class AnyPrice extends AbstractAction
+class AnyPrice extends Model\Carrier\ShippingRule\Action\AbstractAction
 {
     /**
      * @var string

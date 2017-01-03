@@ -12,16 +12,16 @@
  * @license    https://www.coreshop.org/license     GNU General Public License version 3 (GPLv3)
  */
 
-namespace CoreShop\Model\Carrier\ShippingRule\Condition;
+namespace CoreShopExamples\Model\Carrier\ShippingRule\Condition;
 
 use CoreShop\Model;
 use CoreShop\Model\Carrier\ShippingRule as CarrierShippingRule;
 
 /**
  * Class Random
- * @package CoreShop\Model\Carrier\ShippingRule\Condition
+ * @package CoreShopExamples\Model\Carrier\ShippingRule\Condition
  */
-class Random extends AbstractCondition
+class Random extends CarrierShippingRule\Condition\AbstractCondition
 {
     /**
      * @var string

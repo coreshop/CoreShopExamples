@@ -14,8 +14,12 @@
 
 namespace CoreShopExamples;
 
-use CoreShop\Model\Carrier\ShippingRule;
-use CoreShop\Model\Product\PriceRule;
+use CoreShop\Composite\Dispatcher;
+use CoreShopExamples\Model\Carrier\ShippingRule\Action\AnyPrice;
+use CoreShopExamples\Model\Carrier\ShippingRule\Condition\Random;
+use CoreShopExamples\Model\PriceRule\Action\AnyDiscount;
+use CoreShopExamples\Model\PriceRule\Action\ApiPrice;
+use CoreShopExamples\Model\PriceRule\Condition\AnyCondition;
 use Pimcore\API\Plugin as PluginLib;
 
 /**
@@ -28,10 +32,33 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
     {
         parent::init();
 
-        PriceRule::addAction("apiPrice");
+        /*
+         * Before 1.2:
+         *
+         * PriceRule::addAction("apiPrice");
+         *
+         * ShippingRule::addAction("anyPrice");
+         * SippingRule::addCondition("random");
+        */
 
-        ShippingRule::addAction("anyPrice");
-        ShippingRule::addCondition("random");
+        \CoreShop\Model\Product\PriceRule::getActionDispatcher()->addType(AnyDiscount::class);
+        \CoreShop\Model\Product\SpecificPrice::getActionDispatcher()->addType(AnyDiscount::class);
+        \CoreShop\Model\Cart\PriceRule::getActionDispatcher()->addType(AnyDiscount::class);
+
+        \CoreShop\Model\Product\PriceRule::getConditionDispatcher()->addType(AnyCondition::class);
+        \CoreShop\Model\Product\SpecificPrice::getConditionDispatcher()->addType(AnyCondition::class);
+        \CoreShop\Model\Cart\PriceRule::getConditionDispatcher()->addType(AnyCondition::class);
+
+        \CoreShop\Model\Carrier\ShippingRule::getActionDispatcher()->addType(AnyPrice::class);
+        \CoreShop\Model\Carrier\ShippingRule::getConditionDispatcher()->addType(Random::class);
+
+        \Pimcore::getEventManager()->attach('coreshop.rules.productPriceRule.condition.init', function(\Zend_EventManager_Event $e) {
+            $target = $e->getTarget();
+
+            if($target instanceof Dispatcher) {
+                $target->addType(AnyCondition::class);
+            }
+        });
     }
 
     public static function install()
